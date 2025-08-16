@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+
+$primary-color: #13386e;
+
+:root {
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: $primary-color,
+      container-text-color: white,
+    )
+  );
+  @include mat.progress-spinner-overrides(
+    (
+      active-indicator-color: $primary-color,
+    )
+  );
+  @include mat.card-overrides(
+    (
+      subtitle-text-color: $primary-color,
+      elevated-container-color: white,
+    )
+  );
+}

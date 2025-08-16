@@ -1,0 +1,49 @@
+.brand-details {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    button {
+      margin-right: 8px;
+    }
+
+    .mat-card-header {
+      flex: 1;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__section {
+    flex: 1;
+    padding: 16px;
+
+    &-title {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__search {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  &__table {
+    margin-top: 16px;
+    width: 100%;
+    overflow: auto;
+  }
+
+  &__accordion {
+    margin-top: 16px;
+  }
+}

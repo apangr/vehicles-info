@@ -1,0 +1,64 @@
+<div class="brand-details container">
+  <div class="brand-details__header">
+    <button mat-icon-button (click)="goBack()" aria-label="Volver">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <mat-card-header>
+      <mat-card-title>
+        {{ brandName() }}
+      </mat-card-title>
+      <mat-card-subtitle>Listado de modelos y tipos de vehículo</mat-card-subtitle>
+    </mat-card-header>
+  </div>
+
+  <div class="brand-details__body">
+    <!-- Models -->
+    <mat-card class="brand-details__section">
+      <mat-card-title class="brand-details__section-title">Modelos disponibles</mat-card-title>
+
+      <mat-form-field appearance="outline" class="brand-details__search">
+        <mat-label>Buscar modelo</mat-label>
+        <input matInput (input)="applyFilter($event)" placeholder="Ej. V8 Vantage" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSourceModels" class="mat-elevation-z2">
+        <!-- Model_ID -->
+        <ng-container matColumnDef="modelId">
+          <th mat-header-cell *matHeaderCellDef>ID Modelo</th>
+          <td mat-cell *matCellDef="let element">{{ element.modelId }}</td>
+        </ng-container>
+
+        <!-- Model_Name -->
+        <ng-container matColumnDef="modelName">
+          <th mat-header-cell *matHeaderCellDef>Nombre Modelo</th>
+          <td mat-cell *matCellDef="let element">{{ element.modelName }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsModels"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsModels"></tr>
+      </table>
+
+      <!-- Paginador -->
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons />
+    </mat-card>
+
+    <!-- Vehicle Types -->
+    <mat-card class="brand-details__section">
+      <mat-card-title class="brand-details__section-title">Tipos de vehículo</mat-card-title>
+
+      <mat-accordion class="brand-details__accordion">
+        @for (type of vehicleTypes(); track $index) {
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ type.typeName }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>ID: {{ type.typeId }}</p>
+          </mat-expansion-panel>
+        }
+      </mat-accordion>
+    </mat-card>
+  </div>
+</div>
