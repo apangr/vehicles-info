@@ -1,0 +1,21 @@
+<div class="container">
+  <span>Marcas Disponibles</span>
+
+  <!-- search field -->
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Buscar marca</mat-label>
+    <input matInput [(ngModel)]="search" (input)="onSearchChange($event)" placeholder="Ej: Toyota" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <!-- virtual scroll list -->
+  <cdk-virtual-scroll-viewport itemSize="60" class="viewport">
+    <mat-list>
+      <mat-list-item *cdkVirtualFor="let brand of filteredBrands()">
+        <button mat-button color="primary" [routerLink]="['/details', brand.id]">
+          {{ brand.name }}
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </cdk-virtual-scroll-viewport>
+</div>

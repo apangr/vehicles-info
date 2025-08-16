@@ -20,11 +20,14 @@
     "module": "ES2022",
     "paths": {
       "@env/*": ["src/environments/*"],
+      "@core/*": ["src/app/core/*"],
       "@models/*": ["src/app/models/*"],
       "@mappers/*": ["src/app/core/mappers/*"],
       "@repo/*": ["src/app/repositories/*"],
       "@infra/*": ["src/app/infrastructure/*"],
       "@store/*": ["src/app/store/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@testing/*": ["src/app/testing/*"],
     }
   },
   "angularCompilerOptions": {
