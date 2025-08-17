@@ -10,9 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { Brand } from '@models/brand.model';
-import { Store } from '@ngrx/store';
-import { selectFilteredBrands } from '@store/selectors/brands.selectors';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { BrandService } from '@core/services/brand/brand.service';
 
 @Component({
   selector: 'app-brands-list',
@@ -28,11 +27,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     MatIconModule,
     MatListModule,
   ],
+  providers: [BrandService],
   templateUrl: './brands-list.component.html',
   styleUrl: './brands-list.component.scss',
 })
 export class BrandsListComponent {
-  private store = inject(Store);
+  private brandService = inject(BrandService);
   private destroyRef = inject(DestroyRef);
 
   public search = signal<string | null>(null);
@@ -43,8 +43,8 @@ export class BrandsListComponent {
     // Effect to update filtered brands when search changes
     effect(() => {
       const searchValue = this.search();
-      this.store
-        .select(selectFilteredBrands(searchValue))
+      this.brandService
+        .getFilteredBrands(searchValue)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((brands) => {
           this.filteredBrands.set(brands);

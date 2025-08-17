@@ -1,21 +1,21 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { BrandService } from './brand.service';
+import { BrandAPIService } from './brand-api.service';
 import { BrandDto } from '@infra/dto/brand.dto';
 import { ResultListDto } from '@infra/dto/api-response.dto';
 import { provideHttpClient } from '@angular/common/http';
 import { mockBrandApiSuccessResponse } from '@testing/test-mocks';
 
-describe('BrandService', () => {
-  let service: BrandService;
+describe('BrandAPIService', () => {
+  let service: BrandAPIService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BrandService, provideHttpClient(), provideHttpClientTesting()],
+      providers: [BrandAPIService, provideHttpClient(), provideHttpClientTesting()],
     });
 
-    service = TestBed.inject(BrandService);
+    service = TestBed.inject(BrandAPIService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 

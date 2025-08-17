@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { VehiclesRepository } from '@repo/vehicles.repository';
-import { VehiclesService } from '@infra/services/vehicles/vehicles.service';
+import { VehiclesAPIService } from '@infra/services/vehicles/vehicles-api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VehiclesRepositoryImpl implements VehiclesRepository {
-  constructor(private vehiclesService: VehiclesService) {}
+  constructor(private vehiclesApiService: VehiclesAPIService) {}
 
   /**
    * Retrieves a list of vehicle types for the given brand id.
@@ -14,7 +14,7 @@ export class VehiclesRepositoryImpl implements VehiclesRepository {
    * @returns An observable that emits a list of vehicle types.
    */
   getTypesByBrandId(id: number) {
-    return this.vehiclesService.getVehicleTypesByBrandId(id);
+    return this.vehiclesApiService.getVehicleTypesByBrandId(id);
   }
 
   /**
@@ -23,6 +23,6 @@ export class VehiclesRepositoryImpl implements VehiclesRepository {
    * @returns An observable that emits a list of vehicle models.
    */
   getModelsByBrandId(id: number) {
-    return this.vehiclesService.getVehicleModelsByBrandId(id);
+    return this.vehiclesApiService.getVehicleModelsByBrandId(id);
   }
 }

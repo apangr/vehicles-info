@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { BrandsListComponent } from './brands-list.component';
-import { selectAllBrands, selectFilteredBrands } from '@store/selectors/brands.selectors';
 import { FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatCardModule } from '@angular/material/card';
@@ -13,13 +12,17 @@ import { MatListModule } from '@angular/material/list';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { mockBrands } from '@testing/test-mocks';
+import { BrandService } from '@core/services/brand/brand.service';
+import { of } from 'rxjs';
 
 describe('BrandsListComponent', () => {
   let component: BrandsListComponent;
   let fixture: ComponentFixture<BrandsListComponent>;
-  let store: MockStore;
+  let brandServiceMock: jasmine.SpyObj<BrandService>;
 
   beforeEach(async () => {
+    brandServiceMock = jasmine.createSpyObj('BrandService', ['getFilteredBrands']);
+
     await TestBed.configureTestingModule({
       providers: [
         provideMockStore({
@@ -31,6 +34,10 @@ describe('BrandsListComponent', () => {
             },
           },
         }),
+        {
+          provide: BrandService,
+          useValue: brandServiceMock,
+        },
         {
           provide: ActivatedRoute,
           useValue: {
@@ -56,11 +63,6 @@ describe('BrandsListComponent', () => {
 
     fixture = TestBed.createComponent(BrandsListComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(MockStore);
-
-    // Mock the selector
-    store.overrideSelector(selectAllBrands, mockBrands);
-    store.overrideSelector(selectFilteredBrands(''), mockBrands);
     fixture.detectChanges();
   });
 
@@ -69,8 +71,7 @@ describe('BrandsListComponent', () => {
   });
 
   it('should display a list of brands', () => {
-    store.overrideSelector(selectAllBrands, mockBrands);
-    store.refreshState();
+    brandServiceMock.getFilteredBrands.and.returnValue(of(mockBrands));
     fixture.detectChanges();
 
     const listItems = fixture.debugElement.queryAll(By.css('mat-list-item'));
@@ -107,16 +108,11 @@ describe('BrandsListComponent', () => {
   });
 
   it('should filter brands based on search input', async () => {
-    store.overrideSelector(selectFilteredBrands('Toy'), [{ id: 1, name: 'Toyota' }]);
-    store.refreshState();
-    fixture.detectChanges();
+    brandServiceMock.getFilteredBrands.and.returnValue(of([{ id: 1, name: 'Toyota' }]));
 
     const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     inputElement.value = 'Toy';
     inputElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
-    await fixture.whenStable();
     fixture.detectChanges();
 
     const listItems = fixture.debugElement.queryAll(By.css('mat-list-item'));
@@ -124,13 +120,10 @@ describe('BrandsListComponent', () => {
     expect(listItems[0].nativeElement.textContent).toContain('Toyota');
   });
 
-  it('should show all brands when search input is cleared', async () => {
+  it('should show all brands when search input is cleared', () => {
     const inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
     inputElement.value = '';
     inputElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
-    await fixture.whenStable();
     fixture.detectChanges();
 
     const listItems = fixture.debugElement.queryAll(By.css('mat-list-item'));

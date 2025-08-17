@@ -1,17 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrandDetailsComponent } from './brand-details.component';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { mockVehicleModels, mockVehicleTypes } from '@testing/test-mocks';
-import { selectVehiclesModelsByBrand, selectVehiclesTypesByBrand } from '@store/selectors/vehicles.selectors';
+import { BrandService } from '@core/services/brand/brand.service';
+import { of } from 'rxjs';
 
 describe('BrandDetailsComponent', () => {
   let component: BrandDetailsComponent;
   let fixture: ComponentFixture<BrandDetailsComponent>;
-  let store: MockStore;
+  let brandServiceMock: jasmine.SpyObj<BrandService>;
 
   beforeEach(async () => {
+    brandServiceMock = jasmine.createSpyObj('BrandService', ['getBrandDetails']);
+
     await TestBed.configureTestingModule({
       imports: [BrandDetailsComponent, MatPaginatorModule],
       providers: [
@@ -26,6 +29,10 @@ describe('BrandDetailsComponent', () => {
           },
         }),
         {
+          provide: BrandService,
+          useValue: brandServiceMock,
+        },
+        {
           provide: ActivatedRoute,
           useValue: { snapshot: { params: { id: 1 } } },
         },
@@ -34,12 +41,7 @@ describe('BrandDetailsComponent', () => {
 
     fixture = TestBed.createComponent(BrandDetailsComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(MockStore);
 
-    store.overrideSelector(selectVehiclesModelsByBrand(1), mockVehicleModels);
-    store.overrideSelector(selectVehiclesTypesByBrand(1), mockVehicleTypes);
-
-    store.refreshState();
     fixture.detectChanges();
   });
 
@@ -47,19 +49,13 @@ describe('BrandDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load vehicle models from the store', () => {
-    component.vehicleModels.set(mockVehicleModels);
+  it('should load vehicle models from the service', () => {
+    brandServiceMock.getBrandDetails.and.returnValue(of([mockVehicleModels, mockVehicleTypes]));
     fixture.detectChanges();
 
     expect(component.vehicleModels()).toEqual(mockVehicleModels);
-    expect(component.dataSourceModels.data).toEqual(mockVehicleModels);
-    expect(component.getBrandName()).toBe('Brand A');
-  });
-
-  it('should load vehicle types from the store', () => {
-    component.vehicleTypes.set(mockVehicleTypes);
-    fixture.detectChanges();
     expect(component.vehicleTypes()).toEqual(mockVehicleTypes);
+    expect(component.getBrandName()).toBe('Brand A');
   });
 
   it('should return "Marca desconocida" if no models are available', () => {
