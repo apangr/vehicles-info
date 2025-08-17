@@ -10,7 +10,7 @@ import { environment as env } from '@env/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class BrandService {
+export class BrandAPIService {
   private apiUrl = env.apiUrl;
   private responseFormat = '?format=json';
 

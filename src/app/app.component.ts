@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
-import { GlobalLoaderComponent } from '@core/components/global-loader/global-loader.component';
+import { GlobalLoaderComponent } from '@modules/global-loader/global-loader.component';
 
 @Component({
   selector: 'app-root',

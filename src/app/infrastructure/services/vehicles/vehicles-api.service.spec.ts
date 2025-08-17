@@ -1,20 +1,20 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { VehiclesService } from './vehicles.service';
+import { VehiclesAPIService } from './vehicles-api.service';
 import { VehicleType } from '@models/vehicle-type.model';
 import { mockVehicleModelsApiSuccessResponse, mockVehicleTypesApiSuccessResponse } from '@testing/test-mocks';
 
-describe('VehiclesService', () => {
-  let service: VehiclesService;
+describe('VehiclesAPIService', () => {
+  let service: VehiclesAPIService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [VehiclesService, provideHttpClient(), provideHttpClientTesting()],
+      providers: [VehiclesAPIService, provideHttpClient(), provideHttpClientTesting()],
     });
 
-    service = TestBed.inject(VehiclesService);
+    service = TestBed.inject(VehiclesAPIService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
