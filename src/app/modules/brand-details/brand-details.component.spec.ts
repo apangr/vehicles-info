@@ -51,7 +51,6 @@ describe('BrandDetailsComponent', () => {
 
   it('should load vehicle models from the service', () => {
     brandServiceMock.getBrandDetails.and.returnValue(of([mockVehicleModels, mockVehicleTypes]));
-    fixture.detectChanges();
 
     expect(component.vehicleModels()).toEqual(mockVehicleModels);
     expect(component.vehicleTypes()).toEqual(mockVehicleTypes);
@@ -60,7 +59,6 @@ describe('BrandDetailsComponent', () => {
 
   it('should return "Marca desconocida" if no models are available', () => {
     component.vehicleModels.set([]);
-    fixture.detectChanges();
 
     expect(component.getBrandName()).toBe('Marca desconocida');
   });
@@ -79,20 +77,16 @@ describe('BrandDetailsComponent', () => {
     expect(component.dataSourceModels.paginator).toBe(paginator);
   });
 
-  it('should apply filter using applyFilter method', async () => {
+  it('should apply filter using applyFilter method', () => {
     component.dataSourceModels.filterPredicate = (data, filter) => data.modelName.toLowerCase().includes(filter);
 
     component.vehicleModels.set(mockVehicleModels);
-    fixture.detectChanges();
 
     const input = document.createElement('input');
     input.value = 'Model A';
     component.applyFilter({ target: input } as unknown as Event);
 
     component.dataSourceModels._updateChangeSubscription();
-    fixture.detectChanges();
-
-    await fixture.whenStable();
 
     expect(component.dataSourceModels.filteredData.length).toBe(1);
     expect(component.dataSourceModels.filteredData[0].modelName).toBe('Model A');

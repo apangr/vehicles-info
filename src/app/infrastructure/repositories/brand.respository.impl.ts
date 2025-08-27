@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BrandRepository } from '@repo/brand.repository';
+import { BrandRepository } from '@core/repositories/brand.repository';
 import { BrandAPIService } from '@infra/services/brand/brand-api.service';
 
 @Injectable({

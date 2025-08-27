@@ -1,5 +1,5 @@
 import { BrandDto } from '@infra/dto/brand.dto';
-import { Brand } from '@models/brand.model';
+import { Brand } from '@core/models/brand.model';
 
 export class BrandMapper {
   /**

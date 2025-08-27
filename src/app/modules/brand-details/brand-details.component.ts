@@ -7,13 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-// import { Store } from '@ngrx/store';
-// import { ActivatedRoute } from '@angular/router';
-// import { selectVehiclesModelsByBrand, selectVehiclesTypesByBrand } from '@store/selectors/vehicles.selectors';
-import { VehicleModel } from '@models/vehicle-model.model';
+import { VehicleModel } from '@core/models/vehicle-model.model';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { VehicleType } from '@models/vehicle-type.model';
-// import { combineLatest } from 'rxjs';
+import { VehicleType } from '@core/models/vehicle-type.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BrandService } from '@core/services/brand/brand.service';
 
@@ -35,7 +31,6 @@ import { BrandService } from '@core/services/brand/brand.service';
 })
 export class BrandDetailsComponent implements OnInit, AfterViewInit {
   private brandDetailsService = inject(BrandService);
-  // private route = inject(ActivatedRoute);
   private location = inject(Location);
   private destroyRef = inject(DestroyRef);
 
@@ -64,17 +59,6 @@ export class BrandDetailsComponent implements OnInit, AfterViewInit {
         this.vehicleModels.set(models);
         this.vehicleTypes.set(types);
       });
-    // const brandId = +this.route.snapshot.params['id'];
-
-    // const models$ = this.store.select(selectVehiclesModelsByBrand(brandId));
-    // const types$ = this.store.select(selectVehiclesTypesByBrand(brandId));
-
-    // combineLatest([models$, types$])
-    //   .pipe(takeUntilDestroyed(this.destroyRef))
-    //   .subscribe(([models, types]) => {
-    //     this.vehicleModels.set(models);
-    //     this.vehicleTypes.set(types);
-    //   });
   }
   ngAfterViewInit(): void {
     this.syncPaginator();

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Brand } from '@models/brand.model';
+import { Brand } from '@core/models/brand.model';
 import { loadBrands, loadBrandsSuccess, loadBrandsFailure } from '../actions/brands.actions';
 
 export interface BrandsState {

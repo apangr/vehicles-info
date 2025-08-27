@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { VehiclesAPIService } from './vehicles-api.service';
-import { VehicleType } from '@models/vehicle-type.model';
+import { VehicleType } from '@core/models/vehicle-type.model';
 import { mockVehicleModelsApiSuccessResponse, mockVehicleTypesApiSuccessResponse } from '@testing/test-mocks';
 
 describe('VehiclesAPIService', () => {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ResultListDto } from '@infra/dto/api-response.dto';
 import { BrandDto } from '@infra/dto/brand.dto';
-import { Brand } from '@models/brand.model';
+import { Brand } from '@core/models/brand.model';
 import { BrandMapper } from '@mappers/brand.mapper';
 import { environment as env } from '@env/environment';
 

@@ -1,5 +1,5 @@
 import { VehicleModelDto } from '@infra/dto/vehicle-model.dto';
-import { VehicleModel } from '@models/vehicle-model.model';
+import { VehicleModel } from '@core/models/vehicle-model.model';
 
 export class VehicleModelMapper {
   static fromApiToDomain(apiTask: VehicleModelDto): VehicleModel {

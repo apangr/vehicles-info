@@ -21,9 +21,9 @@
     "paths": {
       "@env/*": ["src/environments/*"],
       "@core/*": ["src/app/core/*"],
-      "@models/*": ["src/app/models/*"],
+      "@models/*": ["src/app/core/models/*"],
       "@mappers/*": ["src/app/core/mappers/*"],
-      "@repo/*": ["src/app/repositories/*"],
+      "@repo/*": ["src/app/core/repositories/*"],
       "@infra/*": ["src/app/infrastructure/*"],
       "@store/*": ["src/app/store/*"],
       "@modules/*": ["src/app/modules/*"],

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { VehicleModel } from '@models/vehicle-model.model';
-import { VehicleType } from '@models/vehicle-type.model';
+import { VehicleModel } from '@core/models/vehicle-model.model';
+import { VehicleType } from '@core/models/vehicle-type.model';
 
 export const loadVehiclesDataByBrand = createAction(
   '[Vehicles] Load Vehicles Data By Brand',

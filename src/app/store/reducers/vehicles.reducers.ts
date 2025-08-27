@@ -1,5 +1,5 @@
-import { VehicleModel } from '@models/vehicle-model.model';
-import { VehicleType } from '@models/vehicle-type.model';
+import { VehicleModel } from '@core/models/vehicle-model.model';
+import { VehicleType } from '@core/models/vehicle-type.model';
 import { createReducer, on } from '@ngrx/store';
 import {
   loadVehiclesDataByBrand,

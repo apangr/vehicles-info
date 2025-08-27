@@ -1,6 +1,6 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of, forkJoin } from 'rxjs';
-import { VehiclesRepository } from '@repo/vehicles.repository';
+import { VehiclesRepository } from '@core/repositories/vehicles.repository';
 import {
   loadVehiclesDataByBrand,
   loadVehiclesDataByBrandSuccess,

@@ -2,8 +2,8 @@ import { ResultListDto } from '@infra/dto/api-response.dto';
 import { BrandDto } from '@infra/dto/brand.dto';
 import { VehicleModelDto } from '@infra/dto/vehicle-model.dto';
 import { VehicleTypeDto } from '@infra/dto/vehicle-type.dto';
-import { VehicleModel } from '@models/vehicle-model.model';
-import { VehicleType } from '@models/vehicle-type.model';
+import { VehicleModel } from '@core/models/vehicle-model.model';
+import { VehicleType } from '@core/models/vehicle-type.model';
 
 export const mockVehicleModels: VehicleModel[] = [
   { id: 1, name: 'Brand A', modelId: 1, modelName: 'Model A' },

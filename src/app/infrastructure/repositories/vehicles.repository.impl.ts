@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VehiclesRepository } from '@repo/vehicles.repository';
+import { VehiclesRepository } from '@core/repositories/vehicles.repository';
 import { VehiclesAPIService } from '@infra/services/vehicles/vehicles-api.service';
 
 @Injectable({

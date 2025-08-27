@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Brand } from '@models/brand.model';
+import { Brand } from '@core/models/brand.model';
 import { selectFilteredBrands } from '@store/selectors/brands.selectors';
 import { combineLatest, Observable } from 'rxjs';
 import { AppState } from '@store/index';
-import { VehicleModel } from '@models/vehicle-model.model';
-import { VehicleType } from '@models/vehicle-type.model';
+import { VehicleModel } from '@core/models/vehicle-model.model';
+import { VehicleType } from '@core/models/vehicle-type.model';
 import { ActivatedRoute } from '@angular/router';
 import { selectVehiclesModelsByBrand, selectVehiclesTypesByBrand } from '@store/selectors/vehicles.selectors';
 

@@ -5,8 +5,8 @@ import { VehicleModelDto } from '@infra/dto/vehicle-model.dto';
 import { VehicleTypeDto } from '@infra/dto/vehicle-type.dto';
 import { VehicleModelMapper } from '@mappers/vehicle-model.mapper';
 import { VehicleTypeMapper } from '@mappers/vehicle-type.mapper';
-import { VehicleModel } from '@models/vehicle-model.model';
-import { VehicleType } from '@models/vehicle-type.model';
+import { VehicleModel } from '@core/models/vehicle-model.model';
+import { VehicleType } from '@core/models/vehicle-type.model';
 import { map, Observable } from 'rxjs';
 import { environment as env } from '@env/environment';
 

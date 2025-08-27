@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { loadBrands, loadBrandsFailure, loadBrandsSuccess } from '@store/actions/brands.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { BrandRepository } from '@repo/brand.repository';
+import { BrandRepository } from '@core/repositories/brand.repository';
 
 @Injectable()
 export class BrandEffects {
